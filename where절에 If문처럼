@@ -1,0 +1,41 @@
+
+
+
+#1 
+Where절에 If문처럼
+DECLARE @PARAM VARCHAR(10)
+
+SELECT NAME, AGE FROM TB_TEST
+ WHERE (
+ (@PARAM ='0' AND NAME = 'A') OR 
+ (@PARAM ='1' AND NAME = 'B') 
+			)
+      
+ - @PARAM 을 '0' 으로 받았을때, TB_TEST 테이블에서 NAME 이 A인 사람이 조회 되고,
+'1'로 받았을 때, NAME 이 B인 사람이 조회된다.
+
+설명 : 
+생각을 조금 바꿔 본다면.. 빨리 풀릴수 있는 문제인데 case 문으로만 생각한다면 조금 오래걸리거나 불가능하지 않을까 생각한다. 
+저 쿼리를 조금 바꿔서 설명하자면, @PARAM = 0 과 NAME = 'A' 일때, @PARAM = 1 과 NAME = 'B' 일때만 검색되고 나머지 경우는 검색이 안된다고 생각하면 쉽다.
+예를 들어 @PARAM = 1 과 NAME ='A'는 검색 되지 않겠지?
+
+-- 출처 : https://taewooblog.tistory.com/35
+
+
+
+#2
+STRING SQL = 'SELECT * FROM TEST' --외부
+
+IF(A == "A")
+  SQL = SQL +"WHERE A = '1'"
+ELSE IF(A == "B")
+  SQL = SQL +"WHERE A = '2'"
+ELSE IF(A == "C")
+  SQL = SQL +"WHERE A = '3'"
+ELSE 
+  SQL = SQL +"WHERE A = '4'"
+  
+  
+  
+
+  
